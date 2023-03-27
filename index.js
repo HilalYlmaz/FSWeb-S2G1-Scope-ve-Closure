@@ -30,10 +30,11 @@ console.log('örnek görev:', ilkiniDon(['as','sa'],function(metin){return metin
   Aşağıdaki skor1 ve skor2 kodlarını inceleyiniz ve aşağıdaki soruları altına not alarak cevaplayın
   
   1. skor1 ve skor2 arasındaki fark nedir?
-  
+  iki fonksiyon da çalıştığında 0 sonucunu verecektir fakat skor1 önce skorartirici fonksiyonunu çalıştırarak skorguncelle fonksiyonunun içine girerek işlemlerini yapabilir ancak skor2'de bu durum söz konusu değildir çünkü aradığı skor değişkeni global scope içersinde mevcuttur.
   2. Hangisi bir closure kullanmaktadır? Nasıl tarif edebilirsin? (yarınki derste öğreneceksin :) )
-  
+  skor1 closure kullanmaktadır. Yani skor1'de aradığımız değişken ve yapılacak işlem skorartirici fonksiyonunun içine yazılmıştır.
   3. Hangi durumda skor1 tercih edilebilir? Hangi durumda skor2 daha mantıklıdır?
+  işimizi sağlama almak yaptığımız işlemleri korumak ve erişimini zorlaştırmak istiyorsak skor1 daha mantıklıdır. Herkesin ulaşmasını istiyorsak ya da ortak bir iş yürütüyorsak kaynaklarımızdan faydalanılmasına izin veriyorsak skor2 daha mantıklıdır.
 */
 
 // skor1 kodları
@@ -64,11 +65,10 @@ Aşağıdaki takimSkoru() fonksiyonununda aşağıdakileri yapınız:
 Not: Bu fonskiyon, aşağıdaki diğer görevler için de bir callback fonksiyonu olarak da kullanılacak
 */
 
-function takimSkoru(/*Kodunuzu buraya yazınız*/){
-    /*Kodunuzu buraya yazınız*/
+function takimSkoru(min,max){
+  return Math.round(Math.random() * (15) + 10);
 }
-
-
+console.log( "görev 2 = " + takimSkoru(10,25))
 
 
 /* Görev 3: macSonucu() 
@@ -85,10 +85,17 @@ Aşağıdaki macSonucu() fonksiyonununda aşağıdakileri yapınız:
   "KonukTakim": 80
 }
 */ 
+const randomObj = {};
 
-function macSonucu(/*Kodunuzu buraya yazınız*/){
-  /*Kodunuzu buraya yazınız*/
+function macSonucu(ev , konuk) {
+  return Math.round(Math.random() * (15) + 10);
 }
+
+for (let i = 1; i <= 4; i++) {
+  const ceyrekler = i;
+  randomObj[ceyrekler] = [macSonucu(), macSonucu()];
+}
+console.log(randomObj) ;
 
 
 
@@ -108,11 +115,17 @@ Aşağıdaki periyotSkoru() fonksiyonununda aşağıdakileri yapınız:
 }
   */
 
+const EvSahibi ={EvSahibi : Math.round(Math.random() * (15) + 10),};
+const KonukTakim={KonukTakim : Math.round(Math.random() * (15) + 10),};
+function periyotSkoru(takimSkoru) {
+  
+  return [EvSahibi, KonukTakim];
+  }
+console.log( periyotSkoru(takimSkoru));
+  
+  
 
-function periyotSkoru(/*Kodunuzu buraya yazınız*/) {
-  /*Kodunuzu buraya yazınız*/
 
-}
 
 
 /* Zorlayıcı Görev 5: skorTabelasi() 
