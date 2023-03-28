@@ -85,19 +85,22 @@ Aşağıdaki macSonucu() fonksiyonununda aşağıdakileri yapınız:
   "KonukTakim": 80
 }
 */ 
-const randomObj = {};
 
-function macSonucu(ev , konuk) {
-  return Math.round(Math.random() * (15) + 10);
+
+function macSonucu(callback, ceyrekler) {
+  const skor = {
+    "EvSahibi": 0,
+    "KonukTakim": 0
+  };
+  for (let i = 1; i <= 4; i++) {
+    for (let takim in skor) {
+      skor[takim] += callback();
+    };
+  };
+  return skor
 }
 
-for (let i = 1; i <= 4; i++) {
-  const ceyrekler = i;
-  randomObj[ceyrekler] = [macSonucu(), macSonucu()];
-}
-console.log(randomObj) ;
-
-
+console.log( macSonucu(takimSkoru))
 
 
 
@@ -115,15 +118,19 @@ Aşağıdaki periyotSkoru() fonksiyonununda aşağıdakileri yapınız:
 }
   */
 
-const EvSahibi ={EvSahibi : Math.round(Math.random() * (15) + 10),};
-const KonukTakim={KonukTakim : Math.round(Math.random() * (15) + 10),};
-function periyotSkoru(takimSkoru) {
-  
-  return [EvSahibi, KonukTakim];
+
+function periyotSkoru(callback) {
+  const skor = {
+    EvSahibi : 0,
+    KonukTakim: 0
+  };
+  for (let takimlar in skor) {
+    skor[takimlar] += callback();
   }
-console.log( periyotSkoru(takimSkoru));
+  return skor;
+  };
   
-  
+  console.log( periyotSkoru(takimSkoru));
 
 
 
